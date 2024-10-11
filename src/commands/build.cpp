@@ -20,32 +20,11 @@
 #include <map>
 #include <string_view>
 #include <toml++/toml.hpp>
+#include <utils/library_index.hpp>
 
 namespace fs = std::filesystem;
 
 namespace build {
-
-struct Dependency {
-  std::string library;
-  std::function<std::string(const std::string&)> generator;
-};
-
-static const std::map<std::string, Dependency> dependency_map{
-    {"fmt",
-     {"fmt::fmt",
-      [](const std::string& version) {
-        std::string result{"CPMAddPackage(\"gh:fmtlib/fmt#"};
-        result += version;
-        result += "\")";
-        return result;
-      }}},
-    {"tomlplusplus",
-     {"tomlplusplus::tomlplusplus", [](const std::string& version) {
-        std::string result{"CPMAddPackage(\"gh:marzer/tomlplusplus@"};
-        result += version;
-        result += "\")";
-        return result;
-      }}}};
 
 void run() {
   const fs::path path{fs::current_path()};
@@ -167,20 +146,20 @@ void run() {
   cmake_file << "include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)\n\n";
 
   for (auto const& [key, val] : dependencies_map) {
-    const auto it = dependency_map.find(key);
-    if (it != dependency_map.end()) {
-      cmake_file << it->second.generator(val) << '\n';
+    if (auto library = library_index::Libraries::find(key); library) {
+      cmake_file << library->package_include(val) << '\n';
     }
   }
 
   if (!dependencies_map.empty()) {
     cmake_file << "\ntarget_link_libraries(" << project_name;
+
     for (auto const& [key, val] : dependencies_map) {
-      const auto it = dependency_map.find(key);
-      if (it != dependency_map.end()) {
-        cmake_file << " " << it->second.library;
+      if (auto library = library_index::Libraries::find(key); library) {
+        cmake_file << ' ' << library->link_id;
       }
     }
+
     cmake_file << ")\n";
   }
 

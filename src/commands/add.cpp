@@ -19,6 +19,7 @@
 #include <string_view>
 #include <toml++/toml.hpp>
 #include <unordered_map>
+#include <utils/library_index.hpp>
 
 namespace fs = std::filesystem;
 
@@ -50,13 +51,6 @@ void error_unknown_command(const std::string_view library) {
   exit(EXIT_FAILURE);
 }
 
-struct Library {
-  std::string_view last_version;
-};
-
-static const std::unordered_map<std::string_view, Library> libraries{
-    {"fmt", {"11.0.2"}},
-};
 }  // namespace
 
 void run(const std::span<char *> args) {
@@ -64,9 +58,9 @@ void run(const std::span<char *> args) {
     error_missing_argument();
   }
 
-  const auto library = args[0];
+  const auto library_id = args[0];
 
-  if (auto it{libraries.find(library)}; it != libraries.end()) {
+  if (auto library = library_index::Libraries::find(args[0]); library) {
     const fs::path path{fs::current_path()};
 
     if (!fs::exists(path / "Cask.toml")) {
@@ -84,9 +78,9 @@ void run(const std::span<char *> args) {
       dependencies = config["dependencies"].as_table();
     }
 
-    if (auto name_node = dependencies->get(library)) {
+    if (auto name_node = dependencies->get(library_id)) {
     } else {
-      dependencies->insert(library, it->second.last_version);
+      dependencies->insert(library_id, library->last_version);
 
       std::ofstream cask_file(path / "Cask.toml");
 
@@ -101,10 +95,10 @@ void run(const std::span<char *> args) {
     fmt::print(
         R"(      {} {} v{} to dependencies
 )",
-        fmt::format(fg(help::green) | fmt::emphasis::bold, "Adding"), library,
-        it->second.last_version);
+        fmt::format(fg(help::green) | fmt::emphasis::bold, "Adding"),
+        library_id, library->last_version);
   } else {
-    error_unknown_command(library);
+    error_unknown_command(library_id);
   }
 }
 
