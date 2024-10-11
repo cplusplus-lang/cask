@@ -2,7 +2,7 @@
 
 Cask is the [C++] [*package manager*][def-package-manager]. Cask downloads your C++ [package][def-package]'s
 dependencies, compiles your packages, makes distributable packages, and uploads them to
-[crates.io], the C++ community’s [*package registry*][def-package-registry]. You can contribute
+[cplusplus-lang.com/barrels], the C++ community’s [*package registry*][def-package-registry]. You can contribute
 to this book on [GitHub].
 
 ## Sections
@@ -10,7 +10,7 @@ to this book on [GitHub].
 **[Getting Started](getting-started/index.md)**
 
 To get started with Cask, install Cask (and CMake) and set up your first
-[*crate*][def-crate].
+[*barrel*][def-barrel].
 
 **[Cask Guide](guide/index.md)**
 
@@ -37,10 +37,10 @@ The commands will let you interact with Cask using its command-line interface.
 * [C++ documentation website](https://cplusplus-lang.com/) --- Links to official
   C++ documentation and tools.
 
-[def-crate]:            ./appendix/glossary.md#crate            '"crate" (glossary entry)'
+[def-barrel]:            ./appendix/glossary.md#barrel            '"barrel" (glossary entry)'
 [def-package]:          ./appendix/glossary.md#package          '"package" (glossary entry)'
 [def-package-manager]:  ./appendix/glossary.md#package-manager  '"package manager" (glossary entry)'
 [def-package-registry]: ./appendix/glossary.md#package-registry '"package registry" (glossary entry)'
 [c++]: https://www.cplusplus-lang.com/
-[crates.io]: https://crates.io/
+[cplusplus-lang.com/barrels]: https://www.cplusplus-lang.com/barrels
 [GitHub]: https://github.com/cplusplus-lang/cask/tree/master/src/doc
