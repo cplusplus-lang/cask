@@ -6,9 +6,6 @@ on:
       - master
       - main
 
-environment:
-  name: github-pages
-
 permissions:
   contents: read
   pages: write
@@ -17,6 +14,8 @@ permissions:
 jobs:
   docs:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     steps:
     - uses: actions/checkout@v4
     - run: rustup update nightly && rustup default nightly
