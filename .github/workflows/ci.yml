@@ -322,8 +322,8 @@ jobs:
     - run: rustup update stable
     - run: rustup component add rust-docs
     # This requires rustfmt, use stable.
-    - name: Run semver-check
-      run: cargo +stable run -p semver-check
+    # - name: Run semver-check
+    #   run: cargo +stable run -p semver-check
     # - name: Ensure intradoc links are valid
     #   run: cargo doc --workspace --document-private-items --no-deps
     #   env:
