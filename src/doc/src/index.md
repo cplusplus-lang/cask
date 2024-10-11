@@ -1,4 +1,4 @@
-# The Cargo Book
+# The Cask Book
 
 ![Cargo Logo](images/Cargo-Logo-Small.png)
 
