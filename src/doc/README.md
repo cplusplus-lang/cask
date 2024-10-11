@@ -1,10 +1,10 @@
-# Cargo documentation
+# Cask documentation
 
-This directory contains Cargo's documentation. There are two parts, [The Cargo
+This directory contains Cask's documentation. There are two parts, [The Cask
 Book] which is built with [mdbook] and the man pages, which are built with
 [mdman].
 
-[The Cargo Book]: https://doc.rust-lang.org/cargo/
+[The Cask Book]: https://doc.rust-lang.org/cargo/
 [mdBook]: https://github.com/rust-lang/mdBook
 [mdman]: https://github.com/rust-lang/cargo/tree/master/crates/mdman/
 
@@ -65,7 +65,7 @@ breakage.
 ## Contributing
 
 We'd love your help with improving the documentation! Please feel free to
-[open issues](https://github.com/rust-lang/cargo/issues) about anything, and
+[open issues](https://github.com/cplusplus-lang/cask/issues) about anything, and
 send in PRs for things you'd like to fix or change. If your change is large,
 please open an issue first, so we can make sure that it's something we'd
 accept before you go through the work of getting a PR together.
