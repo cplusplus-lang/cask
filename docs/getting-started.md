@@ -85,7 +85,7 @@ Hello, world!
 
 For more details on using Cask, check out the [Cask Guide](../guide/index.md)
 
-[def-package]:     ../appendix/glossary.md#crate     '"crate" (glossary entry)'
+[def-package]:   appendix.md#package     '"package" (glossary entry)'
 [def-manifest]:  ../appendix/glossary.md#manifest  '"manifest" (glossary entry)'
 [def-project]:   ../appendix/glossary.md#package   '"package" (glossary entry)'
 [compiling-from-source]: (https://github.com/cplusplus-lang/cask#compiling-from-source)
