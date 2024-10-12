@@ -37,8 +37,8 @@ jobs:
         git config user.name "Deploy from CI"
         git config user.email ""
         cd gh-pages
-        mv ../book docs
-        git add docs
+        mv ../book .
+        git add .
 
         # Generate HTML for link redirections.
         python3 "$GENERATE_PY"
