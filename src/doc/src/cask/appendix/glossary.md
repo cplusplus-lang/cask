@@ -19,18 +19,18 @@ See [*lock file*](#lock-file).
 
 See [*manifest*](#manifest).
 
-## Crate
+## Barrel
 
-A Rust *crate* is either a library or an executable program, referred to as
-either a *library crate* or a *binary crate*, respectively.
+A Rust *barrel* is either a library or an executable program, referred to as
+either a *library barrel* or a *binary barrel*, respectively.
 
-Every [target](#target) defined for a Cargo [package](#package) is a *crate*.
+Every [target](#target) defined for a Cargo [package](#package) is a *barrel*.
 
-Loosely, the term *crate* may refer to either the source code of the target or
+Loosely, the term *barrel* may refer to either the source code of the target or
 to the compiled artifact that the target produces. It may also refer to a
 compressed package fetched from a [registry](#registry).
 
-The source code for a given crate may be subdivided into [*modules*](#module).
+The source code for a given barrel may be subdivided into [*modules*](#module).
 
 ## Edition
 
@@ -60,7 +60,7 @@ The meaning of *feature* depends on the context:
 
 ## Index
 
-The *index* is the searchable list of [*crates*](#crate) in a
+The *index* is the searchable list of [*barrels*](#barrel) in a
 [*registry*](#registry).
 
 ## Lock file
@@ -88,15 +88,15 @@ A *member* is a [*package*](#package) that belongs to a
 Rust's module system is used to organize code into logical units called
 *modules*, which provide isolated namespaces within the code.
 
-The source code for a given [crate](#crate) may be subdivided into one or more
+The source code for a given [barrel](#barrel) may be subdivided into one or more
 separate modules. This is usually done to organize the code into areas of
 related functionality or to control the visible scope (public/private) of
 symbols within the source (structs, functions, and so on).
 
 A [`Cargo.toml`](#manifest) file is primarily concerned with the
-[package](#package) it defines, its crates, and the packages of the crates on
+[package](#package) it defines, its barrels, and the packages of the barrels on
 which they depend. Nevertheless, you will see the term "module" often when
-working with Rust, so you should understand its relationship to a given crate.
+working with Rust, so you should understand its relationship to a given barrel.
 
 ## Package
 
@@ -105,7 +105,7 @@ A *package* is a collection of source files and a `Cargo.toml`
 and version which is used for specifying dependencies between packages.
 
 A package contains multiple [*targets*](#target), each of which is a
-[*crate*](#crate). The `Cargo.toml` file describes the type of the crates
+[*barrel*](#barrel). The `Cargo.toml` file describes the type of the barrels
 (binary or library) within the package, along with some metadata about each
 one --- how each is to be built, what their direct dependencies are, etc., as
 described throughout this book.
@@ -117,7 +117,7 @@ The [*package ID specification*][pkgid-spec], or *SPEC*, is a string used to
 uniquely reference a specific version of a package from a specific source.
 
 Small to medium sized Rust projects will only need a single package, though it
-is common for them to have multiple crates.
+is common for them to have multiple barrels.
 
 Larger projects may involve multiple packages, in which case Cargo
 [*workspaces*](#workspace) can be used to manage common dependencies and other
@@ -135,9 +135,9 @@ software builds (by invoking the language-specific compiler).
 
 [*Cargo*](#cargo) is the package manager within the Rust ecosystem. Cargo
 downloads your Rust [package](#package)’s dependencies
-([*artifacts*](#artifact) known as [*crates*](#crate)), compiles your
+([*artifacts*](#artifact) known as [*barrels*](#barrel)), compiles your
 packages, makes distributable packages, and (optionally) uploads them to
-[crates.io][], the Rust community’s [*package registry*](#registry).
+[barrels.io][], the Rust community’s [*package registry*](#registry).
 
 ## Package registry
 
@@ -150,22 +150,22 @@ Another name for a [package](#package).
 ## Registry
 
 A *registry* is a service that contains a collection of downloadable
-[*crates*](#crate) that can be installed or used as dependencies for a
+[*barrels*](#barrel) that can be installed or used as dependencies for a
 [*package*](#package). The default registry in the Rust ecosystem is
-[crates.io](https://crates.io). The registry has an [*index*](#index) which
-contains a list of all crates, and tells Cargo how to download the crates that
+[barrels.io](https://barrels.io). The registry has an [*index*](#index) which
+contains a list of all barrels, and tells Cargo how to download the barrels that
 are needed.
 
 ## Source
 
-A *source* is a provider that contains [*crates*](#crate) that may be included
+A *source* is a provider that contains [*barrels*](#barrel) that may be included
 as dependencies for a [*package*](#package). There are several kinds of
 sources:
 
 - **Registry source** --- See [registry](#registry).
-- **Local registry source** --- A set of crates stored as compressed files on
+- **Local registry source** --- A set of barrels stored as compressed files on
   the filesystem. See [Local Registry Sources].
-- **Directory source** --- A set of crates stored as uncompressed files on the
+- **Directory source** --- A set of barrels stored as uncompressed files on the
   filesystem. See [Directory Sources].
 - **Path source** --- An individual package located on the filesystem (such as a
   [path dependency]) or a set of multiple packages (such as [path overrides]).
@@ -227,7 +227,7 @@ correctness of code. There are two types of test artifacts:
   individual units of code.
 * **Integration test target** --- An [*integration test
   target*][integration-tests] is an executable binary compiled from a *test
-  target* which is a distinct [*crate*](#crate) whose source is located in the
+  target* which is a distinct [*barrel*](#barrel) whose source is located in the
   `tests` directory or specified by the [`[[test]]` table][targets] in the
   `Cargo.toml` [*manifest*](#manifest). It is intended to only test the public
   API of a library, or execute a binary to verify its operation.
@@ -253,7 +253,7 @@ manifest is located. (Compare with [*package root*](#package).)
 [Source Replacement]: ../reference/source-replacement.md
 [cargo-unstable]: ../reference/unstable.md
 [config option]: ../reference/config.md
-[crates.io]: https://crates.io/
+[barrels.io]: https://barrels.io/
 [directory layout]: ../guide/project-layout.md
 [edition guide]: ../../edition-guide/index.html
 [edition-field]: ../reference/manifest.md#the-edition-field
