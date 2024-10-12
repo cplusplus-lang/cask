@@ -37,7 +37,7 @@ jobs:
         git config user.name "Deploy from CI"
         git config user.email ""
         cd gh-pages
-        # mv ../book contrib
+        mv ../book doc
         git add doc
 
         # Generate HTML for link redirections.
