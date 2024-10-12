@@ -1,33 +1,33 @@
-# First Steps with Cargo
+# First Steps with Cask
 
-This section provides a quick sense for the `cargo` command line tool. We
+This section provides a quick sense for the `cask` command line tool. We
 demonstrate its ability to generate a new [***package***][def-package] for us,
-its ability to compile the [***crate***][def-crate] within the package, and
+its ability to compile the [***barrel***][def-barrel] within the package, and
 its ability to run the resulting program.
 
-To start a new package with Cargo, use `cargo new`:
+To start a new package with Cask, use `cask new`:
 
 ```console
-$ cargo new hello_world
+$ cask new hello_world
 ```
 
-Cargo defaults to `--bin` to make a binary program. To make a library, we
+Cask defaults to `--bin` to make a binary program. To make a library, we
 would pass `--lib`, instead.
 
-Let’s check out what Cargo has generated for us:
+Let’s check out what Cask has generated for us:
 
 ```console
 $ cd hello_world
 $ tree .
 .
-├── Cargo.toml
+├── Cask.toml
 └── src
-    └── main.rs
+    └── main.cpp
 
 1 directory, 2 files
 ```
 
-This is all we need to get started. First, let’s check out `Cargo.toml`:
+This is all we need to get started. First, let’s check out `Cask.toml`:
 
 ```toml
 [package]
@@ -39,9 +39,9 @@ edition = "2021"
 ```
 
 This is called a [***manifest***][def-manifest], and it contains all of the
-metadata that Cargo needs to compile your package.
+metadata that Cask needs to compile your package.
 
-Here’s what’s in `src/main.rs`:
+Here’s what’s in `src/main.cpp`:
 
 ```rust
 fn main() {
@@ -49,11 +49,11 @@ fn main() {
 }
 ```
 
-Cargo generated a “hello world” program for us, otherwise known as a
-[***binary crate***][def-crate]. Let’s compile it:
+Cask generated a “hello world” program for us, otherwise known as a
+[***binary barrel***][def-barrel]. Let’s compile it:
 
 ```console
-$ cargo build
+$ cask build
    Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
 ```
 
@@ -64,10 +64,10 @@ $ ./target/debug/hello_world
 Hello, world!
 ```
 
-We can also use `cargo run` to compile and then run it, all in one step:
+We can also use `cask run` to compile and then run it, all in one step:
 
 ```console
-$ cargo run
+$ cask run
      Fresh hello_world v0.1.0 (file:///path/to/package/hello_world)
    Running `target/hello_world`
 Hello, world!
@@ -75,8 +75,8 @@ Hello, world!
 
 ## Going further
 
-For more details on using Cargo, check out the [Cargo Guide](../guide/index.md)
+For more details on using Cask, check out the [Cask Guide](../guide/index.md)
 
-[def-crate]:     ../appendix/glossary.md#crate     '"crate" (glossary entry)'
+[def-barrel]:     ../appendix/glossary.md#barrel     '"barrel" (glossary entry)'
 [def-manifest]:  ../appendix/glossary.md#manifest  '"manifest" (glossary entry)'
 [def-package]:   ../appendix/glossary.md#package   '"package" (glossary entry)'
