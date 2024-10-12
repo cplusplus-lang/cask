@@ -1,9 +1,9 @@
 # Getting Started
 
-To get started with Cargo, install Cargo (and Rust) and set up your first
-[*crate*][def-crate].
+To get started with Cask, install Cask (and CMake) and set up your first
+[*barrel*][def-barrel].
 
 * [Installation](installation.md)
-* [First steps with Cargo](first-steps.md)
+* [First steps with Cask](first-steps.md)
 
-[def-crate]:  ../appendix/glossary.md#crate  '"crate" (glossary entry)'
+[def-barrel]:  ../appendix/glossary.md#barrel  '"barrel" (glossary entry)'
