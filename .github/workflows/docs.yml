@@ -29,7 +29,7 @@ jobs:
       run: |
         GENERATE_PY="$(pwd)/ci/generate.py"
 
-        cd src/doc/cask/contrib
+        cd src/doc
         mdbook build
 
         # Override previous ref to avoid keeping history.
@@ -37,8 +37,8 @@ jobs:
         git config user.name "Deploy from CI"
         git config user.email ""
         cd gh-pages
-        mv ../book contrib
-        git add contrib
+        # mv ../book contrib
+        git add doc
 
         # Generate HTML for link redirections.
         python3 "$GENERATE_PY"
