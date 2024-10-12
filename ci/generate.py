@@ -22,10 +22,7 @@ This page has moved. Click <a href="{mapped}">here</a> to go to the new page.
 def main():
     for name in sorted(MAPPING):
         with open(name, 'w') as f:
-            mapped = MAPPING[name]
-            if mapped is None:
-                mapped = "https://doc.rust-lang.org/cargo/reference/{}".format(name)
-            f.write(TEMPLATE.format(name=name, mapped=mapped))
+            f.write(TEMPLATE.format(name=name, mapped=MAPPING[name]))
 
     # WARN: The CNAME file is for GitHub to redirect requests to the custom domain.
     # Missing this may entail security hazard and domain takeover.
