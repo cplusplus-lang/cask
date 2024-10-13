@@ -1,7 +1,7 @@
 #include <fmt/core.h>
 
 #include <cask/ops/cask_help.hpp>
-#include <cask/utils/opts.hpp>
+#include <cask/util/opts.hpp>
 #include <iostream>
 
 namespace help {

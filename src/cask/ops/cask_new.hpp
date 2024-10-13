@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cask/utils/expected.hpp>
+#include <cask/util/expected.hpp>
 #include <span>
 #include <string>
 

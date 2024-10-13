@@ -3,7 +3,7 @@
 #include <cask/ops/cask_help.hpp>
 #include <cask/ops/cask_new.hpp>
 #include <cask/ops/cask_run.hpp>
-#include <cask/utils/opts.hpp>
+#include <cask/util/opts.hpp>
 #include <iostream>
 #include <span>
 #include <string_view>

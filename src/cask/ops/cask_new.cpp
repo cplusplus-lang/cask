@@ -3,7 +3,7 @@
 
 #include <cask/ops/cask_help.hpp>
 #include <cask/ops/cask_new.hpp>
-#include <cask/utils/filesystem.hpp>
+#include <cask/util/filesystem.hpp>
 #include <filesystem>
 #include <fstream>
 #include <iostream>

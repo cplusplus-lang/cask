@@ -3,7 +3,7 @@
 
 #include <cask/ops/cask_add.hpp>
 #include <cask/ops/cask_help.hpp>
-#include <cask/utils/library_index.hpp>
+#include <cask/util/library_index.hpp>
 #include <filesystem>
 #include <fstream>
 #include <iostream>

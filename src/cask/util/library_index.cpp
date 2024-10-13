@@ -1,6 +1,6 @@
 #include <fmt/core.h>
 
-#include <cask/utils/library_index.hpp>
+#include <cask/util/library_index.hpp>
 
 namespace library_index {
 

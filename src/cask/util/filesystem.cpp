@@ -1,8 +1,8 @@
 #include <fmt/core.h>
 
 #include <cask/ops/cask_help.hpp>
-#include <cask/utils/expected.hpp>
-#include <cask/utils/filesystem.hpp>
+#include <cask/util/expected.hpp>
+#include <cask/util/filesystem.hpp>
 #include <string>
 
 namespace {

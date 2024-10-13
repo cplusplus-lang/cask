@@ -2,7 +2,7 @@
 
 #include <fmt/color.h>
 
-#include <cask/utils/expected.hpp>
+#include <cask/util/expected.hpp>
 #include <span>
 #include <string_view>
 
