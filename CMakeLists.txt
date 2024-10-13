@@ -33,9 +33,10 @@ include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
 CPMAddPackage("gh:fmtlib/fmt#11.0.2")
 CPMAddPackage("gh:catchorg/Catch2@3.7.1")
 CPMAddPackage("gh:marzer/tomlplusplus@3.4.0")
+CPMAddPackage("gh:TartanLlama/expected@1.1.0")
 
 # link dependencies
-target_link_libraries(cask fmt::fmt tomlplusplus::tomlplusplus)
+target_link_libraries(cask fmt::fmt tomlplusplus::tomlplusplus expected)
 
 # Install
 install(TARGETS cask)
@@ -50,7 +51,7 @@ add_executable(cask-test ${TEST_FILES_INPLACE} ${TEST_FILES_FOLDER} ${SRC_FILES}
 
 target_include_directories(cask-test PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
-target_link_libraries(cask-test fmt::fmt Catch2::Catch2WithMain tomlplusplus::tomlplusplus)
+target_link_libraries(cask-test fmt::fmt Catch2::Catch2WithMain tomlplusplus::tomlplusplus expected)
 
 enable_testing()
 add_test(NAME cask COMMAND cask help)
