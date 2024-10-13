@@ -4,6 +4,7 @@
 
 #include <span>
 #include <string_view>
+#include <utils/expected.hpp>
 
 namespace help {
 
@@ -14,6 +15,6 @@ constexpr fmt::color red{fmt::color::red};
 void run();
 void run(const std::span<char *> args);
 void list();
-void fatal_error(const std::string_view msg);
+[[nodiscard]] Result fatal_error(const std::string_view msg);
 
 }  // namespace help

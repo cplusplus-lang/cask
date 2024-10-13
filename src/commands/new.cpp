@@ -13,8 +13,8 @@ namespace fs = std::filesystem;
 namespace new_cmd {
 
 namespace {
-void error_missing_path() {
-  help::fatal_error(fmt::format(
+[[nodiscard]] Result error_missing_path() {
+  return help::fatal_error(fmt::format(
       R"(the following required arguments were not provided:
 {}
 
@@ -28,23 +28,26 @@ For more information, try '{}'
       fmt::format(fg(help::blue), "<path>"),
       fmt::format(fg(help::blue) | fmt::emphasis::bold, "--help")));
 }
+
+[[nodiscard]] Result error_missing_path(const std::string_view project_name) {
+  return help::fatal_error(fmt::format(
+      R"(destination `{}` already exists
+
+Use `cask init` to initialize the directory
+)",
+      fs::absolute(project_name).string()));
+}
 }  // namespace
 
-void run(const std::span<char *> args) {
+Result run(const std::span<char *> args) {
   if (args.empty()) {
-    error_missing_path();
-    exit(EXIT_FAILURE);
+    return error_missing_path();
   }
 
   const auto project_name = args[0];
 
   if (fs::is_directory(project_name)) {
-    fmt::print(fg(fmt::color::red) | fmt::emphasis::bold, "error:");
-    std::cout << " destination " << fs::absolute(project_name)
-              << " already exists\n\n";
-    std::cout << "Use `cask init` to initialize the directory" << std::endl;
-
-    return;
+    return error_missing_path(project_name);
   }
 
   fs::path path{project_name};
@@ -54,11 +57,12 @@ void run(const std::span<char *> args) {
 
   std::ofstream main_file(path / "src" / "main.cpp");
 
-  main_file << "#include <iostream>\n\n";
-  main_file << "int main() {\n";
-  main_file << "    std::cout << \"Hello World!\" << std::endl;";
-  main_file << "    return 0;\n";
-  main_file << "}\n";
+  main_file << R"(#include <iostream>
+
+int main() {
+    std::cout << "Hello World!\n";
+}
+)";
 
   main_file.close();
 
@@ -73,21 +77,25 @@ target/)";
 
   std::ofstream cask_file(path / "Cask.toml");
 
-  cask_file << "[package]\n";
-  cask_file << "name = \"" << project_name << "\"\n";
-  cask_file << "version = \"0.1.0\"\n";
-  cask_file << "standard = \"20\"\n\n";
-  cask_file << "[dependencies]\n";
+  cask_file << fmt::format(R"([package]
+name = "{}"
+version = "0.1.0"
+standard = "20"
+
+[dependencies]
+)",
+                           project_name);
 
   cask_file.close();
 
-  fmt::print(fg(fmt::color::light_green) | fmt::emphasis::bold,
-             "     Created ");
-  std::cout << "binary (application) `" << project_name << "` package\n";
-  fmt::print(fg(fmt::color::deep_sky_blue) | fmt::emphasis::bold, "note: ");
-  std::cout << "note: see more `Cask.toml` keys and their definitions at "
-               "https://doc.cplusplus-lang.com/cask/reference/manifest.html"
-            << std::endl;
+  return fmt::format(
+      R"(     {} binary (application) `{}` package
+{} see more `Cask.toml` keys and their definitions at https://doc.cplusplus-lang.com/cask/reference/manifest.html
+)",
+      fmt::format(fg(fmt::color::light_green) | fmt::emphasis::bold, "Created"),
+      project_name,
+      fmt::format(fg(fmt::color::deep_sky_blue) | fmt::emphasis::bold,
+                  "note:"));
 }
 
 }  // namespace new_cmd

@@ -9,16 +9,16 @@
 namespace opts::command {
 
 namespace {
-void unknown_command(std::string_view command) {
-  help::fatal_error(fmt::format(R"(no such command: `{}`
+Result unknown_command(std::string_view command) {
+  return help::fatal_error(fmt::format(R"(no such command: `{}`
 
        View all installed commands with `cask --list`
 )",
-                                command));
+                                       command));
 }
 }  // namespace
 
-Command from_str(const std::string_view str) {
+std_26::expected<Command, std::string> from_str(const std::string_view str) {
   static const std::unordered_map<std::string_view, Command> command_map{
       {"add", Command::Add},    {"--help", Command::Help},
       {"help", Command::Help},  {"--list", Command::List},
@@ -28,8 +28,7 @@ Command from_str(const std::string_view str) {
   if (auto it{command_map.find(str)}; it != command_map.end()) {
     return it->second;
   } else {
-    unknown_command(str);
-    exit(EXIT_FAILURE);
+    return std_26::unexpected(unknown_command(str).error());
   }
 }
 

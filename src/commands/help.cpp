@@ -37,7 +37,12 @@ void run(const std::span<char *> args) {
 
   const auto command{opts::command::from_str(args[0])};
 
-  switch (command) {
+  if (!command) {
+    std::cout << command.error();
+    exit(EXIT_FAILURE);  // TBD
+  }
+
+  switch (*command) {
     case opts::Command::Add: {
       fmt::print(R"(Add MAN PAGE)");
       break;
@@ -83,9 +88,9 @@ void list() {
   run                  Run a binary or example of the local package)");
 }
 
-void fatal_error(const std::string_view msg) {
-  fmt::print(R"({} {})", fmt::format(fg(red) | fmt::emphasis::bold, "error:"),
-             msg);
+Result fatal_error(const std::string_view msg) {
+  return std_26::unexpected(fmt::format(
+      R"({} {})", fmt::format(fg(red) | fmt::emphasis::bold, "error:"), msg));
 }
 
 }  // namespace help

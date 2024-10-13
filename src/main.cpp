@@ -3,6 +3,7 @@
 #include <commands/help.hpp>
 #include <commands/new.hpp>
 #include <commands/run.hpp>
+#include <iostream>
 #include <span>
 #include <string_view>
 #include <utils/opts.hpp>
@@ -24,7 +25,14 @@ int main(int ac, char* av[]) {
 
   const auto command{opts::command::from_str(args[0])};
 
-  switch (command) {
+  if (!command) {
+    std::cout << command.error();
+    exit(EXIT_FAILURE);
+  }
+
+  Result result{};
+
+  switch (*command) {
     case opts::Command::Add: {
       add::run(cmd_args(args));
       break;
@@ -38,7 +46,7 @@ int main(int ac, char* av[]) {
       break;
     }
     case opts::Command::New: {
-      new_cmd::run(cmd_args(args));
+      result = new_cmd::run(cmd_args(args));
       break;
     }
     case opts::Command::Build: {
@@ -51,5 +59,10 @@ int main(int ac, char* av[]) {
     }
   }
 
-  return 0;
+  if (!result) {
+    std::cout << result.error();
+    exit(EXIT_FAILURE);
+  }
+
+  std::cout << *result;
 }
