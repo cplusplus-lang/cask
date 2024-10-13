@@ -19,7 +19,7 @@ The resolver operates under various constraints and heuristics to find a general
 To understand how these interact, it is helpful to have a coarse understanding of how dependency resolution works.
 
 This pseudo-code approximates what Cargo's resolver does:
-```rust
+```cpp
 pub fn resolve(workspace: &[Package], policy: Policy) -> Option<ResolveGraph> {
     let dep_queue = Queue::new(workspace);
     let resolved = ResolveGraph::new();

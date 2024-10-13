@@ -41,7 +41,7 @@ metadata that Cargo needs to compile your package. This file is written in the
 
 Here’s what’s in `src/main.rs`:
 
-```rust
+```cpp
 fn main() {
     println!("Hello, world!");
 }

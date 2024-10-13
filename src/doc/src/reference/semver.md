@@ -115,7 +115,7 @@ build with both the before and after versions.
 The absence of a publicly exposed [item][items] will cause any uses of that item to
 fail to compile.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -146,7 +146,7 @@ Mitigating strategies:
 
 Adding new, public [items] is a minor change.
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -168,7 +168,7 @@ import that brings that trait into scope, and the new trait introduces an
 associated item that conflicts with any types it is implemented on, this can
 cause a compile-time error due to the ambiguity. Example:
 
-```rust,ignore
+```cpp,ignore
 // Breaking change example
 
 ///////////////////////////////////////////////////////////
@@ -282,7 +282,7 @@ However, this may change the size and alignment of the type.
 Care should be taken if the size or alignment changes.
 Code should not make assumptions about the size or alignment of types with private fields or `non_exhaustive` unless it has a documented size or alignment.
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -321,7 +321,7 @@ See [enum-variant-new](#enum-variant-new) for more discussion.
 Note that this may be a breaking change since it changes the size and alignment of the type.
 See [repr-c-private-change](#repr-c-private-change) for similar concerns.
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -358,7 +358,7 @@ fn main() {
 It is safe to add `repr(C)` to a struct, union, or enum with [the default representation].
 This is safe because users should not make assumptions about the alignment, layout, or size of types with the default representation.
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -388,7 +388,7 @@ fn main() {
 It is safe to add `repr(<int>)` [primitive representation] to an enum with [the default representation].
 This is safe because users should not make assumptions about the alignment, layout, or size of an enum with the default representation.
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -420,7 +420,7 @@ fn main() {
 It is safe to add `repr(transparent)` to a struct or enum with [the default representation].
 This is safe because users should not make assumptions about the alignment, layout, or size of a struct or enum with the default representation.
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -448,7 +448,7 @@ Making a type `repr(packed)` makes changes that can break code, such as being in
 
 <!-- TODO: If all fields are private, should this be safe to do? -->
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -474,7 +474,7 @@ fn main() {
 }
 ```
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -507,7 +507,7 @@ Making a type `repr(align)` would break any use of that type in a `repr(packed)`
 
 <!-- TODO: This seems like it should be extraordinarily rare. Should there be any exceptions carved out for this? -->
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -549,7 +549,7 @@ In some cases, this can cause code to break, similar to those outlined in the [e
 
 [edition-closures]: ../../edition-guide/rust-2021/disjoint-capture-in-closures.html
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -580,7 +580,7 @@ fn main() {
 }
 ```
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -630,7 +630,7 @@ If the value `N` is lowered below the alignment of a public field, then that wou
 
 Note that some changes to `N` may not change the alignment or layout, for example increasing it when the current value is already equal to the natural alignment of the type.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -668,7 +668,7 @@ This change should be safe to make if the type is not well-defined as discussed 
 
 Note that some changes to `N` may not change the alignment or layout, for example decreasing it when the current value is already equal to or less than the natural alignment of the type.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -706,7 +706,7 @@ This may change the alignment or layout that external crates are relying on.
 
 This change should be safe to make if the type is not well-defined as discussed in [type layout](#type-layout) (such as having any private fields and having an undocumented alignment).
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -742,7 +742,7 @@ fn main() {
 It is a breaking change to change the order of public fields of a `repr(C)` type.
 External crates may be relying on the specific ordering of the fields.
 
-```rust,ignore,run-fail
+```cpp,ignore,run-fail
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -796,7 +796,7 @@ fn main() {
 It is a breaking change to remove `repr(C)` from a struct, union, or enum.
 External crates may be relying on the specific layout of the type.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -851,7 +851,7 @@ It is a breaking change to remove `repr(<int>)` from an enum.
 External crates may be assuming that the discriminant is a specific size.
 For example, [`std::mem::transmute`] of an enum may fail.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -887,7 +887,7 @@ It is a breaking change to change the primitive representation of a `repr(<int>)
 External crates may be assuming that the discriminant is a specific size.
 For example, [`std::mem::transmute`] of an enum may fail.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -922,7 +922,7 @@ fn main() {
 It is a breaking change to remove `repr(transparent)` from a struct or enum.
 External crates may be relying on the type having the alignment, layout, or size of the transparent field.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -952,7 +952,7 @@ fn main() {}
 When a private field is added to a struct that previously had all public fields,
 this will break any code that attempts to construct it with a [struct literal].
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -986,7 +986,7 @@ Mitigation strategies:
 When a public field is added to a struct that has all public fields, this will
 break any code that attempts to construct it with a [struct literal].
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1020,7 +1020,7 @@ Mitigation strategies:
 It is safe to add or remove private fields from a struct when the struct
 already has at least one private field.
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1052,7 +1052,7 @@ Note that for tuple structs, this is a **major change** if the tuple contains
 public fields, and the addition or removal of a private field changes the
 index of any public field.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1078,7 +1078,7 @@ fn main() {
 Changing a tuple struct to a normal struct (or vice-versa) is safe if all
 fields are private.
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1109,7 +1109,7 @@ it, nor match its contents.
 It is a breaking change to add a new enum variant if the enum does not use the
 [`#[non_exhaustive]`][non_exhaustive] attribute.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1145,7 +1145,7 @@ Mitigation strategies:
 It is a breaking change to add new fields to an enum variant because all
 fields are public, and constructors and matching will fail to compile.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1174,7 +1174,7 @@ fn main() {
 Mitigation strategies:
 * When introducing the enum, mark the variant as [`non_exhaustive`][non_exhaustive]
   so that it cannot be constructed or matched without wildcards.
-  ```rust,ignore,skip
+  ```cpp,ignore,skip
   pub enum E {
       #[non_exhaustive]
       Variant1{f1: i32}
@@ -1182,7 +1182,7 @@ Mitigation strategies:
   ```
 * When introducing the enum, use an explicit struct as a value, where you can
   have control over the field visibility.
-  ```rust,ignore,skip
+  ```cpp,ignore,skip
   pub struct Foo {
      f1: i32,
      f2: i32,
@@ -1197,7 +1197,7 @@ Mitigation strategies:
 It is a breaking change to add a non-defaulted item to a trait. This will
 break any implementors of the trait.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1229,7 +1229,7 @@ Mitigation strategies:
 It is a breaking change to make any change to a trait item signature. This can
 break external implementors of the trait.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1269,7 +1269,7 @@ It is usually safe to add a defaulted trait item. However, this can sometimes
 cause a compile error. For example, this can introduce an ambiguity if a
 method of the same name exists in another trait.
 
-```rust,ignore
+```cpp,ignore
 // Breaking change example
 
 ///////////////////////////////////////////////////////////
@@ -1318,7 +1318,7 @@ Mitigation strategies:
 It is a breaking change to add a trait item that changes the trait to not be
 [object safe].
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1351,7 +1351,7 @@ one).
 
 It is a breaking change to add a type parameter without a default to a trait.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1379,7 +1379,7 @@ It is safe to add a type parameter to a trait as long as it has a default.
 External implementors will use the default without needing to specify the
 parameter.
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1405,7 +1405,7 @@ inherent items take priority over trait items. However, in some cases the
 collision can cause problems if the name is the same as an implemented trait
 item with a different signature.
 
-```rust,ignore
+```cpp,ignore
 // Breaking change example
 
 ///////////////////////////////////////////////////////////
@@ -1452,7 +1452,7 @@ Mitigation strategies:
 It is a breaking change to tighten generic bounds on a type since this can
 break users expecting the looser bounds.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1481,7 +1481,7 @@ fn main() {
 It is safe to loosen the generic bounds on a type, as it only expands what is
 allowed.
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1511,7 +1511,7 @@ It is safe to add a type parameter to a type as long as it has a default. All
 existing references will use the default without needing to specify the
 parameter.
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1541,7 +1541,7 @@ A struct or enum field can change from a concrete type to a generic type
 parameter, provided that the change results in an identical type for all
 existing use cases. For example, the following change is permitted:
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1569,7 +1569,7 @@ identical field type.
 Changing a struct or enum field from a concrete type to a generic type
 parameter can break if the type can change.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1596,7 +1596,7 @@ following adds a generic parameter that defaults to the original type, which
 is safe because all existing users will be using the same type for both
 fields, the defaulted parameter does not need to be specified.
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1620,7 +1620,7 @@ fn main() {
 
 Changing the arity of a function is a breaking change.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1650,7 +1650,7 @@ Mitigating strategies:
 Usually, adding a non-defaulted type parameter is safe, but in some
 cases it can be a breaking change:
 
-```rust,ignore
+```cpp,ignore
 // Breaking change example
 
 ///////////////////////////////////////////////////////////
@@ -1682,7 +1682,7 @@ The type of a parameter to a function, or its return value, can be
 as long as it can be instantiated to the original type. For example, the
 following changes are allowed:
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1715,7 +1715,7 @@ because all existing uses are instantiations of the new signature.
 Perhaps somewhat surprisingly, generalization applies to trait objects as
 well, given that every trait implements itself:
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1748,7 +1748,7 @@ Introducing generics in this way can potentially create type inference
 failures. These are usually rare, and may be acceptable breakage for some
 projects, as this can be fixed with additional type annotations.
 
-```rust,ignore
+```cpp,ignore
 // Breaking change example
 
 ///////////////////////////////////////////////////////////
@@ -1779,7 +1779,7 @@ generic type constrains or changes the types previously allowed. For example,
 the following adds a generic constraint that may not be satisfied by existing
 code:
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1810,7 +1810,7 @@ lints](#new-lints), it is allowed for updates to introduce new warnings.
 
 Going the other way (making a safe function `unsafe`) is a breaking change.
 
-```rust,ignore
+```cpp,ignore
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1844,7 +1844,7 @@ function on traits (see [any change to trait item signatures](#trait-item-signat
 If your library specifically supports a [`no_std`] environment, it is a
 breaking change to make a new release that requires `std`.
 
-```rust,ignore,skip
+```cpp,ignore,skip
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -1890,7 +1890,7 @@ regardless of whether [`#[non_exhaustive]`][non_exhaustive] is used.
 Adding [`#[non_exhaustive]`][non_exhaustive] to such a struct is not
 a breaking change.
 
-```rust,ignore
+```cpp,ignore
 // MAJOR CHANGE
 
 ///////////////////////////////////////////////////////////
@@ -2010,7 +2010,7 @@ Mitigation strategies:
 Some changes to a library may cause new lints to be triggered in users of that library.
 This should generally be considered a compatible change.
 
-```rust,ignore,dont-deny
+```cpp,ignore,dont-deny
 // MINOR CHANGE
 
 ///////////////////////////////////////////////////////////

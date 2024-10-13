@@ -28,7 +28,7 @@ stdout and stderr output against the expected output.
 ### Functional Tests
 
 Generally, a functional test will be placed in `tests/testsuite/<command>.rs` and will look roughly like:
-```rust,ignore
+```cpp,ignore
 use cargo_test_support::prelude::*;
 use cargo_test_support::str;
 use cargo_test_support::project;
@@ -70,7 +70,7 @@ If you are testing a Cargo feature that only works on "nightly" Cargo, then
 you need to call `masquerade_as_nightly_cargo` on the process builder and pass 
 the name of the feature as the reason, like this:
 
-```rust,ignore
+```cpp,ignore
 p.cargo("build").masquerade_as_nightly_cargo(&["print-im-a-teapot"])
 ```
 
@@ -78,7 +78,7 @@ If you are testing a feature that only works on *nightly rustc* (such as
 benchmarks), then you should use the `nightly` option of the `cargo_test`
 attribute, like this:
 
-```rust,ignore
+```cpp,ignore
 #[cargo_test(nightly, reason = "-Zfoo is unstable")]
 ```
 
@@ -90,7 +90,7 @@ You should not write any tests that use the network such as contacting
 crates.io. Typically, simple path dependencies are the easiest way to add a
 dependency. Example:
 
-```rust,ignore
+```cpp,ignore
 let p = project()
     .file("Cargo.toml", r#"
         [package]
@@ -122,7 +122,7 @@ compilation tests.
 Tests that need to do cross-compilation should include this at the top of the
 test to disable it in scenarios where cross compilation isn't available:
 
-```rust,ignore
+```cpp,ignore
 if cargo_test_support::cross_compile::disabled() {
     return;
 }
@@ -145,7 +145,7 @@ installed, then it should be able to run them.
 If the test needs to run the cross-compiled binary, then it should have
 something like this to exit the test before doing so:
 
-```rust,ignore
+```cpp,ignore
 if cargo_test_support::cross_compile::can_run_on_host() {
     return;
 }
@@ -159,12 +159,12 @@ if cargo_test_support::cross_compile::can_run_on_host() {
 UI Tests are a bit more spread out and generally look like:
 
 `tests/testsuite/<command>/mod.rs`:
-```rust,ignore
+```cpp,ignore
 mod <case>;
 ```
 
 `tests/testsuite/<command>/<case>/mod.rs`:
-```rust,ignore
+```cpp,ignore
 use cargo_test_support::compare::assert_ui;
 use cargo_test_support::current_dir;
 use cargo_test_support::file;
@@ -233,7 +233,7 @@ If you are testing a Cargo feature that only works on "nightly" Cargo, then
 you need to call `masquerade_as_nightly_cargo` on the process builder and pass
 the name of the feature as the reason, like this:
 
-```rust,ignore
+```cpp,ignore
     snapbox::cmd::Command::cargo()
         .masquerade_as_nightly_cargo(&["print-im-a-teapot"])
 ```
@@ -242,7 +242,7 @@ If you are testing a feature that only works on *nightly rustc* (such as
 benchmarks), then you should use the `nightly` option of the `cargo_test`
 attribute, like this:
 
-```rust,ignore
+```cpp,ignore
 #[cargo_test(nightly, reason = "-Zfoo is unstable")]
 ```
 

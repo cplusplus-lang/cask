@@ -1001,7 +1001,7 @@ some-build-tool = { version = "1.0", artifact = "bin" }
 
 Then inside the build script, the binary can be executed at build time:
 
-```rust
+```cpp
 fn main() {
     let build_tool = std::env::var_os("CARGO_BIN_FILE_SOME_BUILD_TOOL").unwrap();
     let status = std::process::Command::new(build_tool)
@@ -1027,7 +1027,7 @@ bar = { artifact = "cdylib", version = "1.0", target = "wasm32-unknown-unknown" 
 
 …along with the build script in `build.rs`.
 
-```rust
+```cpp
 fn main() {
     wasm::run_file(std::env::var("CARGO_CDYLIB_FILE_BAR").unwrap());
 }
@@ -1045,7 +1045,7 @@ bar = { artifact = "bin", version = "1.0", lib = true }
 
 …along with the executable using `main.rs`.
 
-```rust
+```cpp
 fn main() {
     bar::init();
     command::run(env!("CARGO_BIN_FILE_BAR"));
@@ -1301,12 +1301,12 @@ Cargo can directly run `.rs` files as:
 $ cargo +nightly -Zscript file.rs
 ```
 where `file.rs` can be as simple as:
-```rust
+```cpp
 fn main() {}
 ```
 
 A user may optionally specify a manifest in a `cargo` code fence in a module-level comment, like:
-````rust
+````cpp
 #!/usr/bin/env -S cargo +nightly -Zscript
 ---cargo
 [dependencies]

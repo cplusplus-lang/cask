@@ -38,7 +38,7 @@ With this feature defined, [`cfg` expressions] can be used to conditionally
 include code to support the requested feature at compile time. For example,
 inside `lib.rs` of the package could include this:
 
-```rust
+```cpp
 // This conditionally includes a module which implements WEBP support.
 #[cfg(feature = "webp")]
 pub mod webp;
@@ -283,7 +283,7 @@ For example, if you want to optionally support [`no_std`] environments, **do
 not** use a `no_std` feature. Instead, use a `std` feature that *enables*
 `std`. For example:
 
-```rust
+```cpp
 #![no_std]
 
 #[cfg(feature = "std")]
@@ -306,7 +306,7 @@ coordinating all uses of the package in the dependency graph to cooperate to
 avoid enabling them together. If it is not possible, consider adding a compile
 error to detect this scenario. For example:
 
-```rust,ignore
+```cpp,ignore
 #[cfg(all(feature = "foo", feature = "bar"))]
 compile_error!("feature \"foo\" and feature \"bar\" cannot be enabled at the same time");
 ```

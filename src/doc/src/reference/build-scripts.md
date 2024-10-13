@@ -11,7 +11,7 @@ tasks, but it does integrate with them with custom build scripts. Placing a
 file named `build.rs` in the root of a package will cause Cargo to compile
 that script and execute it just before building the package.
 
-```rust,ignore
+```cpp,ignore
 // Example custom build script.
 fn main() {
     // Tell Cargo that if the given file changes, to rerun this build script.
@@ -262,7 +262,7 @@ The syntax of `CHECK_CFG` mirrors the `rustc` [`--check-cfg` flag][option-check-
 
 The instruction can be used like this:
 
-```rust,no_run
+```cpp,no_run
 // build.rs
 println!("cargo::rustc-check-cfg=cfg(foo, values(\"bar\"))");
 if foo_bar_condition {
