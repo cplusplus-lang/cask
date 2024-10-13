@@ -85,7 +85,8 @@ target/)";
              "     Created ");
   std::cout << "binary (application) `" << project_name << "` package\n";
   fmt::print(fg(fmt::color::deep_sky_blue) | fmt::emphasis::bold, "note: ");
-  std::cout << "note: see more `Cask.toml` keys and their definitions at TBD"
+  std::cout << "note: see more `Cask.toml` keys and their definitions at "
+               "https://doc.cplusplus-lang.com/cask/reference/manifest.html"
             << std::endl;
 }
 
