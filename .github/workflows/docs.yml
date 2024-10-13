@@ -44,6 +44,9 @@ jobs:
         mv ../book cask
         git add cask
 
+        mv ../contrib/book cask/contrib
+        git add cask/contrib
+
         # Generate HTML for link redirections.
         python3 "$GENERATE_PY"
         git add *.html
