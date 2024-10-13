@@ -1,7 +1,7 @@
 #include <array>
+#include <cask/commands/new.hpp>
+#include <cask/commands/run.hpp>
 #include <catch2/catch_test_macros.hpp>
-#include <commands/new.hpp>
-#include <commands/run.hpp>
 #include <filesystem>
 
 namespace fs = std::filesystem;

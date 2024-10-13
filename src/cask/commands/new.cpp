@@ -1,13 +1,13 @@
 #include <fmt/color.h>
 #include <fmt/core.h>
 
-#include <commands/help.hpp>
-#include <commands/new.hpp>
+#include <cask/commands/help.hpp>
+#include <cask/commands/new.hpp>
+#include <cask/utils/filesystem.hpp>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <string_view>
-#include <utils/filesystem.hpp>
 
 namespace fs = std::filesystem;
 

@@ -16,7 +16,7 @@ list(FILTER SRC_FILES EXCLUDE REGEX ".test.")
 list(FILTER SRC_FILES EXCLUDE REGEX "main.cpp")
 
 # add the executable
-add_executable(cask ${SRC_FILES} src/main.cpp)
+add_executable(cask ${SRC_FILES} src/cask/main.cpp)
 
 # Add the src folder as an include directory so headers can be found
 target_include_directories(cask PRIVATE ${CMAKE_SOURCE_DIR}/src)

@@ -1,10 +1,10 @@
 #include <fmt/core.h>
 
-#include <commands/help.hpp>
+#include <cask/commands/help.hpp>
+#include <cask/utils/opts.hpp>
 #include <string>
 #include <string_view>
 #include <unordered_map>
-#include <utils/opts.hpp>
 
 namespace opts::command {
 

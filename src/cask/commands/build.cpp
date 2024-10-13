@@ -1,7 +1,8 @@
 #include <fmt/color.h>
 
+#include <cask/commands/build.hpp>
+#include <cask/utils/library_index.hpp>
 #include <cassert>
-#include <commands/build.hpp>
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
@@ -10,7 +11,6 @@
 #include <map>
 #include <string_view>
 #include <toml++/toml.hpp>
-#include <utils/library_index.hpp>
 
 namespace fs = std::filesystem;
 

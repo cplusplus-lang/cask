@@ -1,8 +1,8 @@
 #include <fmt/core.h>
 
-#include <commands/help.hpp>
+#include <cask/commands/help.hpp>
+#include <cask/utils/opts.hpp>
 #include <iostream>
-#include <utils/opts.hpp>
 
 namespace help {
 

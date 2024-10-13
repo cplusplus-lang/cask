@@ -1,9 +1,9 @@
 #include <fmt/core.h>
 
-#include <commands/help.hpp>
+#include <cask/commands/help.hpp>
+#include <cask/utils/expected.hpp>
+#include <cask/utils/filesystem.hpp>
 #include <string>
-#include <utils/expected.hpp>
-#include <utils/filesystem.hpp>
 
 namespace {
 [[nodiscard]] Result error_could_not_open_file(const fs::path file) {

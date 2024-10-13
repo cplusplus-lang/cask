@@ -1,15 +1,15 @@
 #include <fmt/color.h>
 #include <fmt/core.h>
 
-#include <commands/help.hpp>
-#include <commands/new.hpp>
+#include <cask/commands/help.hpp>
+#include <cask/commands/new.hpp>
+#include <cask/utils/library_index.hpp>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <string_view>
 #include <toml++/toml.hpp>
 #include <unordered_map>
-#include <utils/library_index.hpp>
 
 namespace fs = std::filesystem;
 

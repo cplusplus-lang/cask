@@ -1,8 +1,8 @@
 #pragma once
 
+#include <cask/utils/expected.hpp>
 #include <optional>
 #include <string>
-#include <utils/expected.hpp>
 
 namespace opts {
 

@@ -1,8 +1,8 @@
 #include <fmt/color.h>
 
+#include <cask/commands/build.hpp>
+#include <cask/commands/run.hpp>
 #include <cassert>
-#include <commands/build.hpp>
-#include <commands/run.hpp>
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>

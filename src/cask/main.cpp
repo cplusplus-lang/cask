@@ -1,12 +1,12 @@
-#include <commands/add.hpp>
-#include <commands/build.hpp>
-#include <commands/help.hpp>
-#include <commands/new.hpp>
-#include <commands/run.hpp>
+#include <cask/commands/add.hpp>
+#include <cask/commands/build.hpp>
+#include <cask/commands/help.hpp>
+#include <cask/commands/new.hpp>
+#include <cask/commands/run.hpp>
+#include <cask/utils/opts.hpp>
 #include <iostream>
 #include <span>
 #include <string_view>
-#include <utils/opts.hpp>
 #include <vector>
 
 namespace {
