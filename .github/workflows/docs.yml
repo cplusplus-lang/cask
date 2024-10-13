@@ -32,6 +32,10 @@ jobs:
         cd src/doc
         mdbook build
 
+        cd contrib
+        mdbook build
+        cd ..
+
         # Override previous ref to avoid keeping history.
         git worktree add --orphan -B gh-pages gh-pages
         git config user.name "Deploy from CI"
