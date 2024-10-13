@@ -43,7 +43,7 @@ metadata that Cask needs to compile your package.
 
 Here’s what’s in `src/main.cpp`:
 
-```c++
+```cpp
 #include <iostream>
 
 int main() {
