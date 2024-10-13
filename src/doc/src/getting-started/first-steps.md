@@ -43,7 +43,7 @@ metadata that Cask needs to compile your package.
 
 Here’s what’s in `src/main.cpp`:
 
-```rust
+```c++
 #include <iostream>
 
 int main() {
