@@ -1,6 +1,6 @@
 #include <fmt/core.h>
 
-#include <cask/commands/help.hpp>
+#include <cask/ops/cask_help.hpp>
 #include <cask/utils/opts.hpp>
 #include <string>
 #include <string_view>

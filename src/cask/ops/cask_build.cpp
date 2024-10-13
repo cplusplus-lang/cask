@@ -1,6 +1,6 @@
 #include <fmt/color.h>
 
-#include <cask/commands/build.hpp>
+#include <cask/ops/cask_build.hpp>
 #include <cask/utils/library_index.hpp>
 #include <cassert>
 #include <cstdlib>

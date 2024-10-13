@@ -1,6 +1,6 @@
 #include <array>
-#include <cask/commands/build.hpp>
-#include <cask/commands/new.hpp>
+#include <cask/ops/cask_build.hpp>
+#include <cask/ops/cask_new.hpp>
 #include <catch2/catch_test_macros.hpp>
 #include <filesystem>
 

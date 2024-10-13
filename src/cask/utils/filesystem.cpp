@@ -1,6 +1,6 @@
 #include <fmt/core.h>
 
-#include <cask/commands/help.hpp>
+#include <cask/ops/cask_help.hpp>
 #include <cask/utils/expected.hpp>
 #include <cask/utils/filesystem.hpp>
 #include <string>

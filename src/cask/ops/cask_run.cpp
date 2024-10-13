@@ -1,7 +1,7 @@
 #include <fmt/color.h>
 
-#include <cask/commands/build.hpp>
-#include <cask/commands/run.hpp>
+#include <cask/ops/cask_build.hpp>
+#include <cask/ops/cask_run.hpp>
 #include <cassert>
 #include <cstdlib>
 #include <filesystem>

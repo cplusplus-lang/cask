@@ -1,8 +1,8 @@
 #include <fmt/color.h>
 #include <fmt/core.h>
 
-#include <cask/commands/help.hpp>
-#include <cask/commands/new.hpp>
+#include <cask/ops/cask_add.hpp>
+#include <cask/ops/cask_help.hpp>
 #include <cask/utils/library_index.hpp>
 #include <filesystem>
 #include <fstream>

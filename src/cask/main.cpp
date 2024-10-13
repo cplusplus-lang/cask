@@ -1,8 +1,8 @@
-#include <cask/commands/add.hpp>
-#include <cask/commands/build.hpp>
-#include <cask/commands/help.hpp>
-#include <cask/commands/new.hpp>
-#include <cask/commands/run.hpp>
+#include <cask/ops/cask_add.hpp>
+#include <cask/ops/cask_build.hpp>
+#include <cask/ops/cask_help.hpp>
+#include <cask/ops/cask_new.hpp>
+#include <cask/ops/cask_run.hpp>
 #include <cask/utils/opts.hpp>
 #include <iostream>
 #include <span>
