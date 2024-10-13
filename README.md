@@ -15,6 +15,14 @@ Cask downloads your C++ project’s dependencies and compiles your project.
 ## Compiling from Source
 TBD
 
+## Reporting issues
+
+Found a bug? We'd love to know about it!
+
+Please report all issues on the GitHub [issue tracker][issues].
+
+[issues]: https://github.com/cplusplus-lang/cask/issues
+
 ## Contributing
 
 See the **[Cask Contributor Guide]** for a complete introduction
