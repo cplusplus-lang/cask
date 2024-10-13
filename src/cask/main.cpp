@@ -3,6 +3,7 @@
 #include <cask/ops/cask_help.hpp>
 #include <cask/ops/cask_new.hpp>
 #include <cask/ops/cask_run.hpp>
+#include <cask/util/op_result.hpp>
 #include <cask/util/opts.hpp>
 #include <iostream>
 #include <span>
@@ -30,7 +31,7 @@ int main(int ac, char* av[]) {
     exit(EXIT_FAILURE);
   }
 
-  Result result{};
+  OpResult result{};
 
   switch (*command) {
     case opts::Command::Add: {
@@ -46,7 +47,7 @@ int main(int ac, char* av[]) {
       break;
     }
     case opts::Command::New: {
-      result = new_cmd::run(cmd_args(args));
+      result = cask::new_::exec(cmd_args(args));
       break;
     }
     case opts::Command::Build: {

@@ -16,7 +16,7 @@ TEST_CASE("Run", "RunProject") {
     char* argv[] = {const_cast<char*>(arg1)};
     int argc = sizeof(argv) / sizeof(argv[0]);
 
-    new_cmd::run(std::span(argv, argc));
+    cask::new_::exec(std::span(argv, argc));
 
     REQUIRE(fs::exists(path / "sandbox" / "Cask.toml"));
     REQUIRE(fs::exists(path / "sandbox" / "src" / "main.cpp"));

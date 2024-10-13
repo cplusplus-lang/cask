@@ -6,7 +6,7 @@
 #include <string>
 
 namespace {
-[[nodiscard]] Result error_could_not_open_file(const fs::path file) {
+[[nodiscard]] OpResult error_could_not_open_file(const fs::path file) {
   return help::fatal_error(fmt::format(
       R"(couĺd not create file `{}`
 )",
@@ -16,7 +16,7 @@ namespace {
 
 namespace filesystem {
 
-std_26::expected<std::ofstream, Result> ofstream(const fs::path path) {
+std_26::expected<std::ofstream, OpResult> ofstream(const fs::path path) {
   std::ofstream stream(path);
 
   if (!stream.is_open()) {

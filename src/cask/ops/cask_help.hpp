@@ -2,7 +2,7 @@
 
 #include <fmt/color.h>
 
-#include <cask/util/expected.hpp>
+#include <cask/util/op_result.hpp>
 #include <span>
 #include <string_view>
 
@@ -15,6 +15,6 @@ constexpr fmt::color red{fmt::color::red};
 void run();
 void run(const std::span<char *> args);
 void list();
-[[nodiscard]] Result fatal_error(const std::string_view msg);
+[[nodiscard]] OpResult fatal_error(const std::string_view msg);
 
 }  // namespace help

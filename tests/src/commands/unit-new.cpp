@@ -15,7 +15,7 @@ TEST_CASE("New") {
     char* argv[] = {const_cast<char*>(arg1)};
     int argc = sizeof(argv) / sizeof(argv[0]);
 
-    const auto result = new_cmd::run(std::span(argv, argc));
+    const auto result = cask::new_::exec(std::span(argv, argc));
 
     REQUIRE(fs::exists(path / "sandbox" / "Cask.toml"));
     REQUIRE(fs::exists(path / "sandbox" / "src" / "main.cpp"));
@@ -25,7 +25,7 @@ TEST_CASE("New") {
   }
 
   SECTION("ErrorMissingPath") {
-    const auto result = new_cmd::run(std::span<char*>());
+    const auto result = cask::new_::exec(std::span<char*>());
 
     REQUIRE(!result);
     REQUIRE(result.error().find("error:") != std::string::npos);
@@ -37,7 +37,7 @@ TEST_CASE("New") {
     char* argv[] = {const_cast<char*>(arg1)};
     int argc = sizeof(argv) / sizeof(argv[0]);
 
-    const auto result = new_cmd::run(std::span(argv, argc));
+    const auto result = cask::new_::exec(std::span(argv, argc));
 
     REQUIRE(!result);
     REQUIRE(result.error().find("error:") != std::string::npos);

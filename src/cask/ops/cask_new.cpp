@@ -7,14 +7,16 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <string>
 #include <string_view>
 
 namespace fs = std::filesystem;
 
-namespace new_cmd {
+namespace cask {
+namespace new_ {
 
 namespace {
-[[nodiscard]] Result error_missing_path() {
+[[nodiscard]] OpResult error_missing_path() {
   return help::fatal_error(fmt::format(
       R"(the following required arguments were not provided:
 {}
@@ -30,7 +32,7 @@ For more information, try '{}'
       fmt::format(fg(help::blue) | fmt::emphasis::bold, "--help")));
 }
 
-[[nodiscard]] Result error_directory_exists(
+[[nodiscard]] OpResult error_directory_exists(
     const std::string_view project_name) {
   return help::fatal_error(fmt::format(
       R"(destination `{}` already exists
@@ -41,7 +43,7 @@ Use `cask init` to initialize the directory
 }
 }  // namespace
 
-Result run(const std::span<char *> args) {
+OpResult exec(const std::span<char *> args) {
   if (args.empty()) {
     return error_missing_path();
   }
@@ -112,4 +114,5 @@ standard = "20"
                   "note:"));
 }
 
-}  // namespace new_cmd
+}  // namespace new_
+}  // namespace cask

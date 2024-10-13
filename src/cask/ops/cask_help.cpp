@@ -88,7 +88,7 @@ void list() {
   run                  Run a binary or example of the local package)");
 }
 
-Result fatal_error(const std::string_view msg) {
+OpResult fatal_error(const std::string_view msg) {
   return std_26::unexpected(fmt::format(
       R"({} {})", fmt::format(fg(red) | fmt::emphasis::bold, "error:"), msg));
 }

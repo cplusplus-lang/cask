@@ -1,11 +1,12 @@
 #pragma once
 
-#include <cask/util/expected.hpp>
+#include <cask/util/op_result.hpp>
 #include <span>
-#include <string>
 
-namespace new_cmd {
+namespace cask {
+namespace new_ {
 
-[[nodiscard]] Result run(const std::span<char *> args);
+[[nodiscard]] OpResult exec(const std::span<char *> args);
 
-}  // namespace new_cmd
+}  // namespace new_
+}  // namespace cask
