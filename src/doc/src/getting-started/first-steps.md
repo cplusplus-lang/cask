@@ -33,7 +33,7 @@ This is all we need to get started. First, let’s check out `Cask.toml`:
 [package]
 name = "hello_world"
 version = "0.1.0"
-edition = "2021"
+standard = "20"
 
 [dependencies]
 ```
@@ -44,8 +44,10 @@ metadata that Cask needs to compile your package.
 Here’s what’s in `src/main.cpp`:
 
 ```rust
-fn main() {
-    println!("Hello, world!");
+#include <iostream>
+
+int main() {
+    std::cout << "Hello World!\n";
 }
 ```
 
