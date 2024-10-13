@@ -46,6 +46,9 @@ install(TARGETS cask)
 file(GLOB_RECURSE TEST_FILES_INPLACE "src/*.test.cpp")
 file(GLOB_RECURSE TEST_FILES_FOLDER "tests/*.cpp")
 
+list(FILTER TEST_FILES_INPLACE EXCLUDE REGEX "_deps/")
+list(FILTER TEST_FILES_FOLDER EXCLUDE REGEX "_deps/")
+
 # add the executable
 add_executable(cask-test ${TEST_FILES_INPLACE} ${TEST_FILES_FOLDER} ${SRC_FILES})
 
