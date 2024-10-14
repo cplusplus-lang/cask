@@ -1,6 +1,6 @@
 #include <fmt/core.h>
 
-#include <cask/ops/cask_help.hpp>
+#include <cask/util/io.hpp>
 #include <cask/util/op_result.hpp>
 #include <cask/util/opts.hpp>
 #include <string>
@@ -11,11 +11,11 @@ namespace opts::command {
 
 namespace {
 OpResult unknown_command(std::string_view command) {
-  return help::fatal_error(fmt::format(R"(no such command: `{}`
+  return cask::util::io::fatal_error(fmt::format(R"(no such command: `{}`
 
        View all installed commands with `cask --list`
 )",
-                                       command));
+                                                 command));
 }
 }  // namespace
 

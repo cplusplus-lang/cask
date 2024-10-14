@@ -4,6 +4,7 @@
 #include <cask/ops/cask_help.hpp>
 #include <cask/ops/cask_new.hpp>
 #include <cask/util/filesystem.hpp>
+#include <cask/util/io.hpp>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -17,7 +18,7 @@ namespace new_ {
 
 namespace {
 [[nodiscard]] OpResult error_missing_path() {
-  return help::fatal_error(fmt::format(
+  return cask::util::io::fatal_error(fmt::format(
       R"(the following required arguments were not provided:
 {}
 
@@ -25,16 +26,16 @@ namespace {
 
 For more information, try '{}'
 )",
-      fmt::format(fg(help::blue) | fmt::emphasis::bold, "  <path>"),
-      fmt::format(fg(help::green) | fmt::emphasis::bold, "Usage:"),
-      fmt::format(fg(help::blue) | fmt::emphasis::bold, "cask new"),
-      fmt::format(fg(help::blue), "<path>"),
-      fmt::format(fg(help::blue) | fmt::emphasis::bold, "--help")));
+      fmt::format(fg(cask::util::io::blue) | fmt::emphasis::bold, "  <path>"),
+      fmt::format(fg(cask::util::io::green) | fmt::emphasis::bold, "Usage:"),
+      fmt::format(fg(cask::util::io::blue) | fmt::emphasis::bold, "cask new"),
+      fmt::format(fg(cask::util::io::blue), "<path>"),
+      fmt::format(fg(cask::util::io::blue) | fmt::emphasis::bold, "--help")));
 }
 
 [[nodiscard]] OpResult error_directory_exists(
     const std::string_view project_name) {
-  return help::fatal_error(fmt::format(
+  return cask::util::io::fatal_error(fmt::format(
       R"(destination `{}` already exists
 
 Use `cask init` to initialize the directory

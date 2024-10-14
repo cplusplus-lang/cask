@@ -3,6 +3,7 @@
 
 #include <cask/ops/cask_add.hpp>
 #include <cask/ops/cask_help.hpp>
+#include <cask/util/io.hpp>
 #include <cask/util/library_index.hpp>
 #include <filesystem>
 #include <fstream>
@@ -17,7 +18,7 @@ namespace add {
 
 namespace {
 void error_missing_argument() {
-  help::fatal_error(fmt::format(
+  cask::util::io::fatal_error(fmt::format(
       R"(the following required arguments were not provided:
 {}
 
@@ -25,16 +26,16 @@ void error_missing_argument() {
 
 For more information, try '{}'
 )",
-      fmt::format(fg(help::blue) | fmt::emphasis::bold, "  <DEP_ID>"),
-      fmt::format(fg(help::green) | fmt::emphasis::bold, "Usage:"),
-      fmt::format(fg(help::blue) | fmt::emphasis::bold, "cask add"),
-      fmt::format(fg(help::blue), "<DEP>[@VERSION]"),
-      fmt::format(fg(help::blue) | fmt::emphasis::bold, "--help")));
+      fmt::format(fg(cask::util::io::blue) | fmt::emphasis::bold, "  <DEP_ID>"),
+      fmt::format(fg(cask::util::io::green) | fmt::emphasis::bold, "Usage:"),
+      fmt::format(fg(cask::util::io::blue) | fmt::emphasis::bold, "cask add"),
+      fmt::format(fg(cask::util::io::blue), "<DEP>[@VERSION]"),
+      fmt::format(fg(cask::util::io::blue) | fmt::emphasis::bold, "--help")));
   exit(EXIT_FAILURE);
 }
 
 void error_unknown_command(const std::string_view library) {
-  help::fatal_error(fmt::format(
+  cask::util::io::fatal_error(fmt::format(
       R"(the library `{}` could not be found in registry index.
 )",
       library));
@@ -85,7 +86,7 @@ void run(const std::span<char *> args) {
     fmt::print(
         R"(      {} {} v{} to dependencies
 )",
-        fmt::format(fg(help::green) | fmt::emphasis::bold, "Adding"),
+        fmt::format(fg(cask::util::io::green) | fmt::emphasis::bold, "Adding"),
         library_id, library->last_version);
   } else {
     error_unknown_command(library_id);

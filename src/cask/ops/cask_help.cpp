@@ -1,6 +1,7 @@
 #include <fmt/core.h>
 
 #include <cask/ops/cask_help.hpp>
+#include <cask/util/io.hpp>
 #include <cask/util/opts.hpp>
 #include <iostream>
 
@@ -19,14 +20,15 @@ void run() {
 
 See '{} {}' for more information on a specific command.
 )",
-      fmt::format(fg(green) | fmt::emphasis::bold, "Usage:"),
-      fmt::format(fg(blue) | fmt::emphasis::bold, "cask [COMMAND]"),
-      fmt::format(fg(green) | fmt::emphasis::bold, "Commands:"),
-      fmt::format(fg(blue) | fmt::emphasis::bold, "build"),
-      fmt::format(fg(blue) | fmt::emphasis::bold, "new"),
-      fmt::format(fg(blue) | fmt::emphasis::bold, "run"),
-      fmt::format(fg(blue) | fmt::emphasis::bold, "cask help"),
-      fmt::format(fg(blue), "<command>"));
+      fmt::format(fg(cask::util::io::green) | fmt::emphasis::bold, "Usage:"),
+      fmt::format(fg(cask::util::io::blue) | fmt::emphasis::bold,
+                  "cask [COMMAND]"),
+      fmt::format(fg(cask::util::io::green) | fmt::emphasis::bold, "Commands:"),
+      fmt::format(fg(cask::util::io::blue) | fmt::emphasis::bold, "build"),
+      fmt::format(fg(cask::util::io::blue) | fmt::emphasis::bold, "new"),
+      fmt::format(fg(cask::util::io::blue) | fmt::emphasis::bold, "run"),
+      fmt::format(fg(cask::util::io::blue) | fmt::emphasis::bold, "cask help"),
+      fmt::format(fg(cask::util::io::blue), "<command>"));
 }
 
 void run(const std::span<char *> args) {
@@ -90,7 +92,9 @@ void list() {
 
 OpResult fatal_error(const std::string_view msg) {
   return std_26::unexpected(fmt::format(
-      R"({} {})", fmt::format(fg(red) | fmt::emphasis::bold, "error:"), msg));
+      R"({} {})",
+      fmt::format(fg(cask::util::io::red) | fmt::emphasis::bold, "error:"),
+      msg));
 }
 
 }  // namespace help

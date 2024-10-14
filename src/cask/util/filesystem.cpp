@@ -1,13 +1,13 @@
 #include <fmt/core.h>
 
-#include <cask/ops/cask_help.hpp>
 #include <cask/util/expected.hpp>
 #include <cask/util/filesystem.hpp>
+#include <cask/util/io.hpp>
 #include <string>
 
 namespace {
 [[nodiscard]] OpResult error_could_not_open_file(const fs::path file) {
-  return help::fatal_error(fmt::format(
+  return cask::util::io::fatal_error(fmt::format(
       R"(couĺd not create file `{}`
 )",
       fs::absolute(file).string()));
