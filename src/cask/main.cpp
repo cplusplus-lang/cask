@@ -51,7 +51,7 @@ int main(int ac, char* av[]) {
       break;
     }
     case opts::Command::Build: {
-      build::run();
+      result = cask::build::exec();
       break;
     }
     case opts::Command::Run: {

@@ -24,7 +24,7 @@ TEST_CASE("Build", "BuildProject") {
 
   SECTION("Run") {
     fs::current_path(path / "sandbox");
-    build::run();
+    cask::build::exec();
 
     fs::current_path(path / "sandbox" / "target" / "debug" / "build");
 

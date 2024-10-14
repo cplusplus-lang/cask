@@ -17,7 +17,7 @@ namespace fs = std::filesystem;
 namespace run {
 
 void run() {
-  build::run();
+  cask::build::exec();
 
   std::string project_name{};
 

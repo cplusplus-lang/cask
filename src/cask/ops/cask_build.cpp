@@ -1,6 +1,7 @@
 #include <fmt/color.h>
 
 #include <cask/ops/cask_build.hpp>
+#include <cask/util/io.hpp>
 #include <cask/util/library_index.hpp>
 #include <cassert>
 #include <cstdlib>
@@ -14,16 +15,22 @@
 
 namespace fs = std::filesystem;
 
-namespace build {
+namespace cask::build {
 
-void run() {
+namespace {
+[[nodiscard]] OpResult error_not_cask_project(const fs::path path) {
+  return cask::util::io::fatal_error(fmt::format(
+      R"(could not find `Cask.toml` in `{}` or any parent directory
+)",
+      fs::absolute(path).string()));
+}
+}  // namespace
+
+OpResult exec() {
   const fs::path path{fs::current_path()};
 
   if (!fs::exists(path / "Cask.toml")) {
-    fmt::print(fg(fmt::color::red) | fmt::emphasis::bold, "error:");
-    std::cout << "could not find `Cask.toml` in " << fs::absolute(path)
-              << " or any parent directory" << std::endl;
-    return;
+    return error_not_cask_project(path);
   }
 
   std::string project_name{};
@@ -42,11 +49,11 @@ void run() {
           std::cout << "Project name: " << project_name << std::endl;
         } else {
           std::cerr << "'name' exists but is not a valid string" << std::endl;
-          return;
+          return "";
         }
       } else {
         std::cerr << "'name' key not found in the package" << std::endl;
-        return;
+        return "";
       }
 
       if (auto standard_node = package->get("standard")) {
@@ -59,7 +66,7 @@ void run() {
         }
       } else {
         std::cerr << "'standard' key not found in the package" << std::endl;
-        return;
+        return "";
       }
     } else {
       std::cerr << "[package] table not found" << std::endl;
@@ -83,7 +90,7 @@ void run() {
     }
   } catch (const toml::parse_error& err) {
     // std::cerr << "Parsing failed: " << err << std::endl;
-    return;
+    return "";
   }
 
   if (!fs::is_directory(path / "target")) {
@@ -166,6 +173,8 @@ void run() {
   command += (path / "target" / "debug" / "build").string();
 
   assert(std::system(command.c_str()) == 0);
+
+  return "";
 }
 
-}  // namespace build
+}  // namespace cask::build

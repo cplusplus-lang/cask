@@ -1,7 +1,9 @@
 #pragma once
 
-namespace build {
+#include <cask/util/op_result.hpp>
 
-void run();
+namespace cask::build {
 
-}  // namespace build
+[[nodiscard]] OpResult exec();
+
+}  // namespace cask::build
