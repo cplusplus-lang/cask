@@ -27,10 +27,14 @@ namespace {
 }  // namespace
 
 OpResult exec() {
-  const fs::path path{fs::current_path()};
+  fs::path path{fs::current_path()};
+  const auto original_path = path;
 
-  if (!fs::exists(path / "Cask.toml")) {
-    return error_not_cask_project(path);
+  while (!fs::exists(path / "Cask.toml")) {
+    if (path == path.root_path()) {
+      return error_not_cask_project(original_path);
+    }
+    path = path.parent_path();
   }
 
   std::string project_name{};
